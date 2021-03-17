@@ -120,18 +120,13 @@
 	 */
 	Controller.prototype.editItemSave = function (id, title) {
 		var self = this;
+//
 
-		while (title[0] === " ") {
-			title = title.slice(1);
-		}
-
-		while (title[title.length-1] === " ") {
-			title = title.slice(0, -1);
-		}
 
 		if (title.length !== 0) {
-			self.model.update(id, {title: title}, function () {
-				self.view.render('editItemDone', {id: id, title: title});
+			title = title.trim();
+			self.model.update(id, {title}, function () {
+				self.view.render('editItemDone', {id: id, title});
 			});
 		} else {
 			self.removeItem(id);

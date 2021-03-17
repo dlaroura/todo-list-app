@@ -169,7 +169,7 @@
 			}
 		});
 	};
-
+//switch
 	View.prototype.bind = function (event, handler) {
 		var self = this;
 		if (event === 'newTodo') {

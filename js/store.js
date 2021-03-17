@@ -81,12 +81,6 @@
 		callback = callback || function () {};
 
 		// Generate an ID
-	    var newId = ""; 
-	    var charset = "0123456789";
-
-        for (var i = 0; i < 6; i++) {
-     		newId += charset.charAt(Math.floor(Math.random() * charset.length));
-		}
 
 		// If an ID was actually given, find the item and update each property
 		if (id) {
@@ -104,7 +98,7 @@
 		} else {
 
     		// Assign an ID
-			updateData.id = parseInt(newId);
+			updateData.id = Date.now(); //on assigne la date precise d'ajout
     
 
 			todos.push(updateData);
@@ -122,16 +116,10 @@
 	Store.prototype.remove = function (id, callback) {
 		var data = JSON.parse(localStorage[this._dbName]);
 		var todos = data.todos;
-		var todoId;
-		
+	
+	//1 action en une boucle for, suppression de la varible todoID
 		for (var i = 0; i < todos.length; i++) {
-			if (todos[i].id == id) {
-				todoId = todos[i].id;
-			}
-		}
-
-		for (var i = 0; i < todos.length; i++) {
-			if (todos[i].id == todoId) {
+			if (todos[i].id === id) {
 				todos.splice(i, 1);
 			}
 		}
